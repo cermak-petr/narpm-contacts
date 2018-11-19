@@ -37,7 +37,14 @@ async function getValidSessionID(url, proxyGroup){
 
 async function findEmailsFromWebsites(results){
     const qMap = {};
-    const customData = {queries: []};
+    const customData = {
+        queries: [], 
+        skipRegex: [
+            'facebook',
+            'linkedin',
+            'google'
+        ]
+    };
     for(const result of results){
         const query = result.name + ' ' + result.company;
         customData.queries.push(query);
@@ -98,16 +105,13 @@ async function getAllEmails(url, proxyGroup, session){
 const getText = async element => await getAttribute(element, 'textContent');
 
 Apify.main(async () => {
-    await Apify.call('petr_cermak/json-to-xlsx', [{ "hello": 123 }, { "hello": 345 }, { "hello": 567 }]);
-    console.log('bebebe');
     let results = [];
     try{
         const dataset = await Apify.openDataset('HzMoceStLummky6s3');
-        console.log('aaa');
         await dataset.forEach(async item => {
             if(!item.emails || item.emails.length < 1){
                 results.push(item);
-                if(results.length >= 1){
+                if(results.length >= 5){
                     await findEmailsFromWebsites(results);
                     await Apify.push(results);
                     results = [];
