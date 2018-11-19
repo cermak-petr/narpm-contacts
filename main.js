@@ -127,7 +127,7 @@ Apify.main(async () => {
         await dataset.forEach(async item => {
             if(!item.emails || item.emails.length < 1){
                 results.push(item);
-                if(await process(results){results = [];}
+                if(await process(results)){results = [];}
                 if(promises.length > 7){
                     await Promise.all(promises);
                     promises = [];
