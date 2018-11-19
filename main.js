@@ -46,7 +46,8 @@ async function findEmailsFromWebsites(results){
             'yelp',
             'remax',
             'narpm',
-            'buzzfile'
+            'buzzfile',
+            'zoominfo'
         ]
     };
     for(const result of results){
