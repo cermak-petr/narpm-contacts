@@ -111,19 +111,22 @@ const getText = async element => await getAttribute(element, 'textContent');
 
 Apify.main(async () => {
     let results = [];
+    const process = async () => {
+        if(results.length >= 10){
+            await findEmailsFromWebsites(results);
+            await Apify.push(results);
+            results = [];
+        }
+    };
     try{
         const dataset = await Apify.openDataset('HzMoceStLummky6s3');
         await dataset.forEach(async item => {
             if(!item.emails || item.emails.length < 1){
                 results.push(item);
-                if(results.length >= 5){
-                    await findEmailsFromWebsites(results);
-                    await Apify.push(results);
-                    results = [];
-                    return;
-                }
+                await process();
             }
         });
+        await process();
     }
     catch(e){console.log(e);}
 });
