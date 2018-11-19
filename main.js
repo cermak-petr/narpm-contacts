@@ -114,7 +114,7 @@ Apify.main(async () => {
     const process = async () => {
         if(results.length >= 10){
             await findEmailsFromWebsites(results);
-            await Apify.push(results);
+            await Apify.pushData(results);
             results = [];
         }
     };
