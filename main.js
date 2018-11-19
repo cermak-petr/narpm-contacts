@@ -16,7 +16,7 @@ async function getAttribute(element, attr){
 /** Finds a working proxy*/
 async function getValidSessionID(url, proxyGroup){
     const id = Math.random() + '';
-    for(let i = 0; i < 1000; i++){
+    for(let i = 0; i < 70; i++){
         console.log('testing proxy...');
         const session = `${id}_${i}`;
         const browser = await Apify.launchPuppeteer({
