@@ -62,11 +62,13 @@ async function findEmailsFromWebsites(results){
     await dataset.forEach(async gResult => {
         try{
             const oResult = qMap[gResult.query];
-            const uriMatch = gResult.link.match(/q=([^&]+)/);
-            const searchUrl = (uriMatch && uriMatch.length > 1) ? decodeURIComponent(uriMatch[1]) : gResult.displayed_link;
-            const session = await getValidSessionID(searchUrl, 'BUYPROXIES94952');
-            const emails = await getAllEmails(searchUrl);
-            oResult.emails = emails;
+            if(gResult.link){
+                const uriMatch = gResult.link.match(/q=([^&]+)/);
+                const searchUrl = (uriMatch && uriMatch.length > 1) ? decodeURIComponent(uriMatch[1]) : gResult.displayed_link;
+                const session = await getValidSessionID(searchUrl, 'BUYPROXIES94952');
+                const emails = await getAllEmails(searchUrl);
+                oResult.emails = emails;
+            }
         }
         catch(e){console.log(e);}
     });
