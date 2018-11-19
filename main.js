@@ -42,7 +42,10 @@ async function findEmailsFromWebsites(results){
         skipRegex: [
             'facebook',
             'linkedin',
-            'google'
+            'google',
+            'yelp',
+            'remax',
+            'narpm'
         ]
     };
     for(const result of results){
