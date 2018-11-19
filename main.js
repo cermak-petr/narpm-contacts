@@ -16,7 +16,7 @@ async function getAttribute(element, attr){
 /** Finds a working proxy*/
 async function getValidSessionID(url, proxyGroup){
     const id = Math.random() + '';
-    for(let i = 0; i < 70; i++){
+    for(let i = 0; i < 10; i++){
         console.log('testing proxy...');
         const session = `${id}_${i}`;
         let browser;
