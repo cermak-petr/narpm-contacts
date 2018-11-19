@@ -135,7 +135,7 @@ Apify.main(async () => {
             }
         });
         await process();
-        f(promises.length > 7){await Promise.all(promises);}
+        if(promises.length > 7){await Promise.all(promises);}
     }
     catch(e){console.log(e);}
 });
