@@ -19,13 +19,16 @@ async function getValidSessionID(url, proxyGroup){
     for(let i = 0; i < 70; i++){
         console.log('testing proxy...');
         const session = `${id}_${i}`;
-        const browser = await Apify.launchPuppeteer({
-            useApifyProxy: true,
-            apifyProxySession: session,
-            apifyProxyGroups: [proxyGroup]
-        });
-        const page = await browser.newPage();
-        try{await page.goto(url);}
+        let browser;
+        try{
+            browser = await Apify.launchPuppeteer({
+                useApifyProxy: true,
+                apifyProxySession: session,
+                apifyProxyGroups: [proxyGroup]
+            });
+            const page = await browser.newPage();
+            await page.goto(url);
+        }
         catch(e){
             console.log('invalid proxy, retrying...');
             await browser.close();
