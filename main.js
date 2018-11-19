@@ -117,8 +117,8 @@ Apify.main(async () => {
             promises.push((async () => {
                 await findEmailsFromWebsites(items);
                 await Apify.pushData(items);
-                return true;
             })());
+            return true;
         }
         return false;
     };
