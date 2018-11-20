@@ -28,10 +28,13 @@ async function getValidSessionID(url, proxyGroup){
             });
             const page = await browser.newPage();
             await page.goto(url);
+            await page.close();
+            await new Promise(resolve => setTimeout(resolve, 10));
+            await browser.close();
         }
         catch(e){
             console.log('invalid proxy, retrying...');
-            await browser.close();
+            try{await browser.close();}catch(a){}
         }
         console.log('valid proxy found');
         return session;
