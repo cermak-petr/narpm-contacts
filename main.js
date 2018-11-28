@@ -133,12 +133,12 @@ Apify.main(async () => {
         return false;
     };
     try{
-        const dataset = await Apify.openDataset('HzMoceStLummky6s3');
+        const dataset = await Apify.openDataset('WBQXKxrvKu82LcrBC');
         await dataset.forEach(async item => {
             if(!item.emails || item.emails.length < 1){
                 results.push(item);
                 if(await process(results)){results = [];}
-                if(promises.length > 7){
+                if(promises.length > 12){
                     await Promise.all(promises);
                     promises = [];
                 }
