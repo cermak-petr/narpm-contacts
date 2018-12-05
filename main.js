@@ -53,7 +53,8 @@ async function findEmailsFromWebsites(results){
             'remax',
             'narpm',
             'buzzfile',
-            'zoominfo'
+            'zoominfo',
+            'alignable'
         ]
     };
     for(const result of results){
